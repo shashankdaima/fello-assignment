@@ -7,6 +7,7 @@ import 'package:flutter_template/presentation/first_screen/first_screen_vm.dart'
 import 'package:flutter_template/presentation/first_screen/widgets/dashboard.dart';
 import 'package:flutter_template/util/logger.dart';
 import 'package:flutter_template/util/toast_and_snackbar.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rive/rive.dart';
 
 class FirstScreen extends ConsumerWidget {
@@ -64,7 +65,7 @@ class FirstScreen extends ConsumerWidget {
       body: ListView.builder(itemBuilder: (BuildContext ctx, int idx) {
         if (idx == 0) {
           return Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: const Color(0xFF4D4C61),
                 borderRadius: BorderRadius.only(
                   bottomLeft:
@@ -73,7 +74,21 @@ class FirstScreen extends ConsumerWidget {
                       Radius.circular(20.0), // Adjust the radius as needed
                 ),
               ),
-              child: const Dashboard());
+              child: Column(
+                children: [
+                  Text(
+                    'Hello, Shashank!',
+                    style: GoogleFonts.robotoCondensed(
+                        fontSize: 23.0, fontWeight: FontWeight.w500),
+                  ),
+                  Text(
+                    'Welcome to better Fello',
+                    style: GoogleFonts.robotoCondensed(
+                        fontSize: 18.0, fontWeight: FontWeight.w500),
+                  ),
+                  const Dashboard(),
+                ],
+              ));
         }
         return TreeListElement(title: "Element", progress: 12, stage: 6);
       }),
