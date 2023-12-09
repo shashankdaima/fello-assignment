@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class TreeListElement extends ConsumerWidget {
-  TreeListElement(
+  const TreeListElement(
       {required this.title,
       required this.progress,
       required this.stage,
