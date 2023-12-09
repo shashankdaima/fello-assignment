@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/core/app_router.gr.dart';
 import 'package:flutter_template/presentation/first_screen/first_screen_vm.dart';
+import 'package:flutter_template/presentation/first_screen/widgets/dashboard.dart';
 import 'package:flutter_template/util/logger.dart';
 import 'package:flutter_template/util/toast_and_snackbar.dart';
+import 'package:rive/rive.dart';
 
 class FirstScreen extends ConsumerWidget {
   const FirstScreen({super.key});
@@ -14,6 +16,8 @@ class FirstScreen extends ConsumerWidget {
     final viewModel = ref.read(firstScreenVmProvider.notifier);
     final logger = ref.read(loggerProvider);
     final toastAndSnackbar = ref.read(toastAndSnackbarProvider);
+    final Size screenDimens = MediaQuery.of(context).size;
+
     ref.listen(firstScreenVmProvider.select((_) => _.status),
         (previousStatus, currentStatus) {
       switch (currentStatus) {
@@ -38,27 +42,42 @@ class FirstScreen extends ConsumerWidget {
       }
     });
     return Scaffold(
-      appBar: AppBar(title: const Text("First Screen")),
+      appBar: AppBar(
+        title: const Text("Tree Bank"),
+        backgroundColor: const Color(0xFF4D4C61),
+        centerTitle: true,
+        leading: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Container(
+            width: 36,
+            height: 36,
+            decoration: const BoxDecoration(
+              color: Color(0xFF850B52),
+              shape: BoxShape.circle,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Image.asset("assets/avatar.png"),
+            ),
+          ),
+        ),
+      ),
       body: Center(
           child: Column(
         children: [
-          ElevatedButton(
-            onPressed: () {
-              viewModel.onScreenChangeButtonClicked();
-            },
-            child: const Text(
-                'Click Me To Move to second screen.'), // The text displayed on the button
-          ),
-          const SizedBox(height: 12),
-          ElevatedButton(
-            onPressed: () {
-              AutoRouter.of(context).push(const ApiPagingRoute());
-            },
-            child: const Text(
-                'Click Me To Move to Paging Screen.'), // The text displayed on the button
-          ),
+          const Dashboard(),
         ],
       )),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.red,
+        onPressed: () {
+          // Add your FAB onPressed logic here
+        },
+        child: const Icon(
+          Icons.priority_high,
+          color: Colors.grey,
+        ),
+      ),
     );
   }
 }
