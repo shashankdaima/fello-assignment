@@ -1,0 +1,14 @@
+{
+    "providers": [
+        {"ref":"_"},
+        {"logger":"_"},
+        {"api_client":"apiClientProvider"},
+        {"news_api_client":"newsApiClientProvider"}
+    ],
+    "status": [
+        "initial",
+        "loading",
+        "error",
+        "loaded"
+    ]
+}
