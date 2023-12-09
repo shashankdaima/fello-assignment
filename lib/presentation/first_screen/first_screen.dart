@@ -20,7 +20,8 @@ class FirstScreen extends ConsumerWidget {
     final logger = ref.read(loggerProvider);
     final toastAndSnackbar = ref.read(toastAndSnackbarProvider);
     final Size screenDimens = MediaQuery.of(context).size;
-
+    final listOfTasks =
+        ref.watch(firstScreenVmProvider.select((value) => value.tasks));
     ref.listen(firstScreenVmProvider.select((_) => _.status),
         (previousStatus, currentStatus) {
       switch (currentStatus) {
@@ -88,40 +89,42 @@ class FirstScreen extends ConsumerWidget {
             ),
           ],
         ),
-        body: ListView.builder(itemBuilder: (BuildContext ctx, int idx) {
-          if (idx == 0) {
-            return Container(
-                decoration: const BoxDecoration(
-                  color: Color(0xFF4D4C61),
-                  borderRadius: BorderRadius.only(
-                    bottomLeft:
-                        Radius.circular(20.0), // Adjust the radius as needed
-                    bottomRight:
-                        Radius.circular(20.0), // Adjust the radius as needed
-                  ),
-                ),
-                child: Column(
-                  children: [
-                    Text(
-                      'Hello, Shashank!',
-                      style: GoogleFonts.robotoCondensed(
-                          fontSize: 23.0, fontWeight: FontWeight.w500),
+        body: ListView.builder(
+            itemCount: listOfTasks.length + 1,
+            itemBuilder: (BuildContext ctx, int idx) {
+              if (idx == 0) {
+                return Container(
+                    decoration: const BoxDecoration(
+                      color: Color(0xFF4D4C61),
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(
+                            20.0), // Adjust the radius as needed
+                        bottomRight: Radius.circular(
+                            20.0), // Adjust the radius as needed
+                      ),
                     ),
-                    Text(
-                      'Welcome to better Fello',
-                      style: GoogleFonts.robotoCondensed(
-                          fontSize: 18.0, fontWeight: FontWeight.w500),
-                    ),
-                    const Dashboard(),
-                  ],
-                ));
-          }
-          return TreeListElement(title: "Element", progress: 12, stage: 6);
-        }),
+                    child: Column(
+                      children: [
+                        Text(
+                          'Hello, Shashank!',
+                          style: GoogleFonts.robotoCondensed(
+                              fontSize: 23.0, fontWeight: FontWeight.w500),
+                        ),
+                        Text(
+                          'Welcome to better Fello',
+                          style: GoogleFonts.robotoCondensed(
+                              fontSize: 18.0, fontWeight: FontWeight.w500),
+                        ),
+                        const Dashboard(),
+                      ],
+                    ));
+              }
+              return TreeListElement(title: "Element", progress: 12, stage: 6);
+            }),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.red,
           onPressed: () {
-            // Add your FAB onPressed logic here
+            viewModel.addTask();
           },
           child: const Icon(
             Icons.priority_high,

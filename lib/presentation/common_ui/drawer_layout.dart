@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_template/core/app_router.gr.dart';
 import 'package:flutter_template/presentation/common_ui/tree_list_element.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -44,8 +46,7 @@ class DrawerLayout extends ConsumerWidget {
             padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 12),
             child: FloatingActionButton.extended(
               onPressed: () {
-                // Handle the button press
-                print('Add New Goal pressed');
+                AutoRouter.of(context).push(const SecondRoute());
               },
               icon: const Icon(Icons.add),
               label: Text(

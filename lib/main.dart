@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_template/services/db_services/app_db.dart';
 import './theme.dart';
 import 'core/app_router.gr.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await $FloorAppDatabase.databaseBuilder('app_database.db').build();
   runApp(const ProviderScope(child: MyApp()));
 }
 
