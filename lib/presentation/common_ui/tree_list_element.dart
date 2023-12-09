@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TreeListElement extends ConsumerWidget {
   const TreeListElement(
@@ -13,10 +14,18 @@ class TreeListElement extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Card(
+      shape: RoundedRectangleBorder(
+        side: BorderSide(color: Colors.blueGrey, width: 1.0),
+        borderRadius: BorderRadius.circular(10.0),
+      ),
       child: ListTile(
         leading: Icon(Icons.abc),
-        title: Text(title),
-        subtitle: LinearProgressIndicator(value: progress / 10),
+        title: Text(
+          title,
+          style: GoogleFonts.robotoCondensed(
+              fontSize: 18.0, fontWeight: FontWeight.w500),
+        ),
+        subtitle: LinearProgressIndicator(value: progress * 0.01),
       ),
     );
   }

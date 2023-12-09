@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/core/app_router.gr.dart';
+import 'package:flutter_template/presentation/common_ui/drawer_layout.dart';
 import 'package:flutter_template/presentation/common_ui/tree_list_element.dart';
 import 'package:flutter_template/presentation/first_screen/first_screen_vm.dart';
 import 'package:flutter_template/presentation/first_screen/widgets/dashboard.dart';
@@ -44,89 +45,89 @@ class FirstScreen extends ConsumerWidget {
       }
     });
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF4D4C61),
-        leading: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Container(
-            width: 36,
-            height: 36,
-            decoration: const BoxDecoration(
-              color: Color(0xFF850B52),
-              shape: BoxShape.circle,
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Image.asset("assets/avatar.png"),
-            ),
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: GestureDetector(
-              child: const Card(
-                color: Colors.pink,
-                child: Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: 24,
-                        height: 24,
-                        child: RiveAnimation.asset("assets/coin_anim.riv"),
-                      ),
-                      Text(
-                        "100",
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-      body: ListView.builder(itemBuilder: (BuildContext ctx, int idx) {
-        if (idx == 0) {
-          return Container(
+        appBar: AppBar(
+          backgroundColor: const Color(0xFF4D4C61),
+          leading: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Container(
+              width: 36,
+              height: 36,
               decoration: const BoxDecoration(
-                color: Color(0xFF4D4C61),
-                borderRadius: BorderRadius.only(
-                  bottomLeft:
-                      Radius.circular(20.0), // Adjust the radius as needed
-                  bottomRight:
-                      Radius.circular(20.0), // Adjust the radius as needed
+                color: Color(0xFF850B52),
+                shape: BoxShape.circle,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Image.asset("assets/avatar.png"),
+              ),
+            ),
+          ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: GestureDetector(
+                child: const Card(
+                  color: Colors.pink,
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 24,
+                          height: 24,
+                          child: RiveAnimation.asset("assets/coin_anim.riv"),
+                        ),
+                        Text(
+                          "100",
+                        )
+                      ],
+                    ),
+                  ),
                 ),
               ),
-              child: Column(
-                children: [
-                  Text(
-                    'Hello, Shashank!',
-                    style: GoogleFonts.robotoCondensed(
-                        fontSize: 23.0, fontWeight: FontWeight.w500),
-                  ),
-                  Text(
-                    'Welcome to better Fello',
-                    style: GoogleFonts.robotoCondensed(
-                        fontSize: 18.0, fontWeight: FontWeight.w500),
-                  ),
-                  const Dashboard(),
-                ],
-              ));
-        }
-        return TreeListElement(title: "Element", progress: 12, stage: 6);
-      }),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.red,
-        onPressed: () {
-          // Add your FAB onPressed logic here
-        },
-        child: const Icon(
-          Icons.priority_high,
-          color: Colors.grey,
+            ),
+          ],
         ),
-      ),
-    );
+        body: ListView.builder(itemBuilder: (BuildContext ctx, int idx) {
+          if (idx == 0) {
+            return Container(
+                decoration: const BoxDecoration(
+                  color: Color(0xFF4D4C61),
+                  borderRadius: BorderRadius.only(
+                    bottomLeft:
+                        Radius.circular(20.0), // Adjust the radius as needed
+                    bottomRight:
+                        Radius.circular(20.0), // Adjust the radius as needed
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      'Hello, Shashank!',
+                      style: GoogleFonts.robotoCondensed(
+                          fontSize: 23.0, fontWeight: FontWeight.w500),
+                    ),
+                    Text(
+                      'Welcome to better Fello',
+                      style: GoogleFonts.robotoCondensed(
+                          fontSize: 18.0, fontWeight: FontWeight.w500),
+                    ),
+                    const Dashboard(),
+                  ],
+                ));
+          }
+          return TreeListElement(title: "Element", progress: 12, stage: 6);
+        }),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.red,
+          onPressed: () {
+            // Add your FAB onPressed logic here
+          },
+          child: const Icon(
+            Icons.priority_high,
+            color: Colors.grey,
+          ),
+        ),
+        drawer: const DrawerLayout());
   }
 }
