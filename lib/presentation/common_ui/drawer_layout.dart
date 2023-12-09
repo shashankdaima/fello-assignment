@@ -20,9 +20,23 @@ class DrawerLayout extends ConsumerWidget {
                 end: Alignment.bottomCenter,
               ),
             ),
+            padding: EdgeInsets.zero,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [Image.asset("assets/reward_png.png")],
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Hi Shashank!",
+                          style: GoogleFonts.robotoCondensed(
+                              fontSize: 18.0, fontWeight: FontWeight.w500)),
+                    ],
+                  ),
+                ),
+                Image.asset("assets/reward_png.png"),
+              ],
             ),
           );
         } else if (idx == 1) {
