@@ -61,12 +61,37 @@ class FirstScreen extends ConsumerWidget {
             ),
           ),
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: GestureDetector(
+              child: const Card(
+                color: Colors.pink,
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 24,
+                        height: 24,
+                        child: RiveAnimation.asset("assets/coin_anim.riv"),
+                      ),
+                      Text(
+                        "100",
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
       body: ListView.builder(itemBuilder: (BuildContext ctx, int idx) {
         if (idx == 0) {
           return Container(
               decoration: const BoxDecoration(
-                color: const Color(0xFF4D4C61),
+                color: Color(0xFF4D4C61),
                 borderRadius: BorderRadius.only(
                   bottomLeft:
                       Radius.circular(20.0), // Adjust the radius as needed
