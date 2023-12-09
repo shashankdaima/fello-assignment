@@ -46,7 +46,7 @@ class DrawerLayout extends ConsumerWidget {
             padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 12),
             child: FloatingActionButton.extended(
               onPressed: () {
-                AutoRouter.of(context).push(const SecondRoute());
+                AutoRouter.of(context).push(SecondRoute());
               },
               icon: const Icon(Icons.add),
               label: Text(

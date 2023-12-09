@@ -6,7 +6,6 @@ import 'package:flutter_template/services/db_services/entities/time_base_entity.
 class TaskEntity extends TimeBaseEntity {
   @PrimaryKey(autoGenerate: true)
   final int id;
-
   final String title;
   final double progress;
   final int stage;

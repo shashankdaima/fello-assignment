@@ -19,18 +19,16 @@ part 'first_screen_vm.freezed.dart';
 
 final firstScreenVmProvider =
     StateNotifierProvider.autoDispose<FirstScreenVm, FirstScreenVmState>(
-        ((ref) => FirstScreenVm(ref: ref, database: ref.read(appDbProvider))));
+        ((ref) => FirstScreenVm(ref: ref)));
 
 class FirstScreenVm extends StateNotifier<FirstScreenVmState> {
   final StateNotifierProviderRef ref;
   late Logger logger;
-  final Future<AppDatabase> database;
-  late StreamSubscription databaseSubscription;
 
-  FirstScreenVm({required this.ref, required this.database})
-      : super(const FirstScreenVmState()) {
+  FirstScreenVm({
+    required this.ref,
+  }) : super(const FirstScreenVmState()) {
     logger = ref.read(loggerProvider);
-    loadValues();
   }
   // void onScreenChangeButtonClicked() async {
   //   state = state.copyWith(status: FirstScreenVmStatus.loading);
@@ -50,21 +48,6 @@ class FirstScreenVm extends StateNotifier<FirstScreenVmState> {
   //     // this either loaded, or initial.
   //   }
   // }
-  loadValues() async {
-    // debugPrint((await(await database).reservationDao.getAllReservations()).length.toString());
-    final listOfReservation = (await database).taskDao.getAllTask();
-
-    databaseSubscription = listOfReservation.listen((reservations) {
-      debugPrint(reservations.length.toString());
-      state = state.copyWith(tasks: reservations);
-    });
-  }
-
-  @override
-  void dispose() {
-    databaseSubscription.cancel();
-    super.dispose();
-  }
 
   void addTask() async {}
 }

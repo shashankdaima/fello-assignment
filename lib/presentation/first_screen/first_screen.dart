@@ -39,7 +39,7 @@ class FirstScreen extends ConsumerWidget {
           break;
         case FirstScreenVmStatus.loaded:
           logger.d('Status is loaded');
-          AutoRouter.of(context).push(const SecondRoute());
+          AutoRouter.of(context).push(SecondRoute());
           break;
         default:
           logger.d('Unknown status');

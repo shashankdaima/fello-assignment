@@ -6,7 +6,6 @@ import 'core/app_router.gr.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await $FloorAppDatabase.databaseBuilder('app_database.db').build();
   runApp(const ProviderScope(child: MyApp()));
 }
 
