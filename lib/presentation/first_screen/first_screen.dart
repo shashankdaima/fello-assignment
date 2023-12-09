@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/core/app_router.gr.dart';
+import 'package:flutter_template/presentation/common_ui/tree_list_element.dart';
 import 'package:flutter_template/presentation/first_screen/first_screen_vm.dart';
 import 'package:flutter_template/presentation/first_screen/widgets/dashboard.dart';
 import 'package:flutter_template/util/logger.dart';
@@ -43,9 +44,7 @@ class FirstScreen extends ConsumerWidget {
     });
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Tree Bank"),
         backgroundColor: const Color(0xFF4D4C61),
-        centerTitle: true,
         leading: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Container(
@@ -62,12 +61,22 @@ class FirstScreen extends ConsumerWidget {
           ),
         ),
       ),
-      body: Center(
-          child: Column(
-        children: [
-          const Dashboard(),
-        ],
-      )),
+      body: ListView.builder(itemBuilder: (BuildContext ctx, int idx) {
+        if (idx == 0) {
+          return Container(
+              decoration: BoxDecoration(
+                color: const Color(0xFF4D4C61),
+                borderRadius: BorderRadius.only(
+                  bottomLeft:
+                      Radius.circular(20.0), // Adjust the radius as needed
+                  bottomRight:
+                      Radius.circular(20.0), // Adjust the radius as needed
+                ),
+              ),
+              child: const Dashboard());
+        }
+        return TreeListElement(title: "Element", progress: 12, stage: 6);
+      }),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.red,
         onPressed: () {

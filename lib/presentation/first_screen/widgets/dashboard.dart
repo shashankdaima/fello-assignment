@@ -12,7 +12,7 @@ class Dashboard extends ConsumerWidget {
     return Container(
         width: screenDimens.width,
         height: screenDimens.width / 1.2,
-        padding: const EdgeInsets.all(8),
-        child: rive.RiveAnimation.asset("assets/tree_anim.riv"));
+        padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+        child: const rive.RiveAnimation.asset("assets/tree_anim.riv"));
   }
 }

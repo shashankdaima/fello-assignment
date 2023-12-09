@@ -46,6 +46,7 @@ dependencies:
   sqflite: ^2.3.0
   shimmer: ^3.0.0
   rive: ^0.9.1
+  google_fonts: ^4.0.4
 
 
 
