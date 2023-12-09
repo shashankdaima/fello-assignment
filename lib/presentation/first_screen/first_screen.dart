@@ -121,8 +121,15 @@ class FirstScreen extends ConsumerWidget {
                       ],
                     ));
               }
-              return TreeListElement(
-                  title: listOfTasks[idx - 1].title, progress: 12, stage: 6);
+              return GestureDetector(
+                onTap: () {
+                  dbInteractor.addProgresstoThisTask(listOfTasks[idx - 1]);
+                },
+                child: TreeListElement(
+                    title: listOfTasks[idx - 1].title,
+                    progress: listOfTasks[idx - 1].progress,
+                    stage: 6),
+              );
             }),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.red,

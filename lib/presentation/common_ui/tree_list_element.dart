@@ -9,7 +9,7 @@ class TreeListElement extends ConsumerWidget {
       required this.stage,
       super.key});
   final String title;
-  final int progress;
+  final double progress;
   final int stage;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
