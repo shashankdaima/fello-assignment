@@ -8,13 +8,12 @@ class TaskEntity extends TimeBaseEntity {
   final int id;
   final String title;
   final double progress;
-  final int stage;
-
+  final int totalInstallments;
   TaskEntity(
       {required this.id,
       required this.title,
       required this.progress,
-      required this.stage,
+      required this.totalInstallments,
       required super.createdAt,
       required super.updatedAt});
 }

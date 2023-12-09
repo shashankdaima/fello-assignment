@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/core/app_router.gr.dart';
+import 'package:flutter_template/core/global_db.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SecondScreen extends ConsumerWidget {
@@ -11,6 +12,8 @@ class SecondScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final dbInteractor = ref.read(globalDbProvider.notifier);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add Goal'),
@@ -21,7 +24,7 @@ class SecondScreen extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextField(
-              controller: purposeController,
+              controller: installmentsController,
               decoration: const InputDecoration(
                 labelText: 'Number of Installments',
               ),
@@ -29,7 +32,7 @@ class SecondScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 16.0),
             TextField(
-              controller: installmentsController,
+              controller: purposeController,
               decoration: const InputDecoration(
                 labelText: 'Purpose',
               ),
@@ -43,7 +46,9 @@ class SecondScreen extends ConsumerWidget {
           try {
             String installments = installmentsController.text.trim();
             String purpose = purposeController.text.trim();
-            print("$installments, ${int.tryParse(purpose.trim())}");
+            // print("$installments, ${int.tryParse(purpose.trim())}");
+            dbInteractor.addTask(purpose, int.tryParse(purpose.trim()) ?? 10);
+            context.navigateBack();
           } catch (e) {
             print('Error: Invalid input. Please enter valid values.');
           }

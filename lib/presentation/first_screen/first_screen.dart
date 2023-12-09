@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/core/app_router.gr.dart';
+import 'package:flutter_template/core/global_db.dart';
 import 'package:flutter_template/presentation/common_ui/drawer_layout.dart';
 import 'package:flutter_template/presentation/common_ui/tree_list_element.dart';
 import 'package:flutter_template/presentation/first_screen/first_screen_vm.dart';
@@ -17,11 +18,12 @@ class FirstScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModel = ref.read(firstScreenVmProvider.notifier);
+    final dbInteractor = ref.read(globalDbProvider.notifier);
+
     final logger = ref.read(loggerProvider);
     final toastAndSnackbar = ref.read(toastAndSnackbarProvider);
     final Size screenDimens = MediaQuery.of(context).size;
-    final listOfTasks =
-        ref.watch(firstScreenVmProvider.select((value) => value.tasks));
+    final listOfTasks = ref.watch(globalDbProvider);
     ref.listen(firstScreenVmProvider.select((_) => _.status),
         (previousStatus, currentStatus) {
       switch (currentStatus) {
@@ -119,7 +121,8 @@ class FirstScreen extends ConsumerWidget {
                       ],
                     ));
               }
-              return TreeListElement(title: "Element", progress: 12, stage: 6);
+              return TreeListElement(
+                  title: listOfTasks[idx - 1].title, progress: 12, stage: 6);
             }),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.red,
